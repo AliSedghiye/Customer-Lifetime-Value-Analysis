@@ -8,7 +8,7 @@ INSERT INTO core.customer (
 )
 SELECT DISTINCT
     TRIM(customer_id),
-    TO_DATE(NULLIF(TRIM(signup_date), ''), 'DD-MM-YYYY'),
+    TO_DATE(NULLIF(TRIM(signup_date), ''), 'YYYY-MM-DD'),
     TRIM(city),
     TRIM(state),
     TRIM(segment),
@@ -84,8 +84,8 @@ INSERT INTO core.promotion (
 SELECT DISTINCT
     TRIM(promo_id),
     TRIM(promo_type),
-    TO_DATE(NULLIF(TRIM(start_date), ''), 'DD-MM-YYYY'),
-    TO_DATE(NULLIF(TRIM(end_date), ''), 'DD-MM-YYYY'),
+    TO_DATE(NULLIF(TRIM(start_date), ''), 'YYYY-MM-DD'),
+    TO_DATE(NULLIF(TRIM(end_date), ''), 'YYYY-MM-DD'),
     NULLIF(TRIM(discount_value), '')::NUMERIC(10,2)
 FROM staging.promotion_raw
 WHERE promo_id IS NOT NULL
@@ -231,7 +231,7 @@ INSERT INTO core.support_ticket (
 SELECT DISTINCT
     TRIM(ticket_id),
     TRIM(customer_id),
-    TO_DATE(NULLIF(TRIM(created_date), ''), 'DD-MM-YYYY'),
+    TO_DATE(NULLIF(TRIM(created_date), ''), 'YYYY-MM-DD'),
     TRIM(issue_type),
     TRIM(status),
     NULLIF(TRIM(resolution_time_hr), '')::INT,
@@ -255,7 +255,7 @@ INSERT INTO core.campaign_touch (
 SELECT DISTINCT
     TRIM(touch_id),
     TRIM(customer_id),
-    TO_DATE(NULLIF(TRIM(touch_date), ''), 'DD-MM-YYYY'),
+    TO_DATE(NULLIF(TRIM(touch_date), ''), 'YYYY-MM-DD'),
     TRIM(channel),
     TRIM(campaign_name),
     TRIM(outcome)
@@ -282,7 +282,7 @@ INSERT INTO core.external_factor (
 SELECT DISTINCT
     TRIM(factor_id),
     TRIM(store_id),
-    TO_DATE(NULLIF(TRIM(factor_date), ''), 'DD-MM-YYYY'),
+    TO_DATE(NULLIF(TRIM(factor_date), ''), 'YYYY-MM-DD'),
     NULLIF(TRIM(is_holiday), '')::BOOLEAN,
     NULLIF(TRIM(temp_c), '')::NUMERIC(5,2),
     NULLIF(TRIM(rainfall_mm), '')::NUMERIC(6,2),
