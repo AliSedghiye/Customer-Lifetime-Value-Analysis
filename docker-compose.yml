@@ -50,7 +50,8 @@ services:
       python /app/scripts/load_csv_to_staging.py &&
       PGPASSWORD=my_secret psql -h postgres -p 5432 -U postgres -d \"Marketing-HW2\" -f /app/sql/transform_staging_to_core.sql &&
       PGPASSWORD=my_secret psql -h postgres -p 5432 -U postgres -d \"Marketing-HW2\" -f /app/sql/quality_checks.sql &&
-      python /app/scripts/create_analytics_views.py
+      python /app/scripts/create_analytics_views.py &&
+      echo 'The data warehouse is ready. You can now open the notebook.'
       "
 
 volumes:
